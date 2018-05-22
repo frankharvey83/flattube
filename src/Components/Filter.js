@@ -9,10 +9,11 @@ class Filter extends Component {
   //   }).unique()
   // }
 
+
   render = () => {
     return (
       <div className="filter">
-        Your code for your Filter
+          <input type="text" onChange={this.props.handleFilterChange}/>
       </div>
     );
   }

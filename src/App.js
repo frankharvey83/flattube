@@ -10,11 +10,28 @@ class App extends Component {
     shows: []
   }
 
+componentDidMount() {
+  Adapter.getShows()
+  .then(data => this.setState({
+    shows: data
+  }))
+}
+
+handleFilterChange = (e) => {
+  return this.state.shows.filter((show) => show.genres.includes(e.target.value))
+
+}
+
   render = () => {
+    console.log(this.state.shows[1])
     return (
       <div className="App">
-        <TVShowList />
-        <Filter />
+        <Filter handleFilterChange={this.handleFilterChange} />
+
+        <TVShowList
+          currentDetail={this.state.currentDetail}
+          currentId={this.state.currentId}
+           handleClick={this.handleClick} tvShows={this.state.shows} />
       </div>
     );
   }
